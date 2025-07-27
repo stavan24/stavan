@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Footballer Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0a0a0a;
+      color: white;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: #0a0a0a;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      border-bottom: 2px solid #00ff88;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      color: #00ff88;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      transition: 0.4s ease;
+    }
+
+    .nav-links a {
+      color: #00ff88;
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: #00ff88;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 6px;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: #00ff88;
+      border-radius: 2px;
+    }
+
+    /* Mobile Nav */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background: #111;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
+        transform: translateY(-500px);
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    header {
+      padding-top: 120px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: #00ff88;
+      animation: glow 1.5s infinite alternate;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #aaa;
+    }
+
+    section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 60px 20px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      color: #00ff88;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      border-left: 4px solid #00ff88;
+      padding-left: 15px;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      background: #111;
+      padding: 15px;
+      border-left: 4px solid #00ff88;
+      margin: 10px 0;
+      border-radius: 10px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .gallery img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #00ff88;
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #1f1f1f;
+      color: white;
+    }
+
+    input[type="submit"] {
+      background: #00ff88;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background: white;
+      color: #00ff88;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #111;
+      color: #aaa;
+      border-top: 2px solid #00ff88;
+    }
+
+    /* Animations */
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #00ff88; }
+      to { text-shadow: 0 0 20px #00ff88, 0 0 30px #00ff88; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">⚽ Stavan</div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="nav-links" id="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header>
+    <h1>Stavan “The Wall”</h1>
+    <p>Professional Centre-Back | Inspired by Ramos & Pepe</p>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I’m a fearless centre-back who lives to defend. Strength, leadership, and vision define my play. I protect my team like a wall.</p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>Slide Tackling & Interceptions</li>
+      <li>Positioning & Leadership</li>
+      <li>Headers & Long Balls</li>
+      <li>Calm Under Pressure</li>
+    </ul>
+  </section>
+
+  <section id="achievements">
+    <h2>Achievements</h2>
+    <ul>
+      <li>🏆 Best Defender U14 Nationals</li>
+      <li>🔥 7 Clean Sheets</li>
+      <li>⚽ 3 Defender Goals in One Season</li>
+    </ul>
+  </section>
+
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery">
+      <img src="https://via.placeholder.com/300x200?text=Match+1" alt="">
+      <img src="https://via.placeholder.com/300x200?text=Match+2" alt="">
+      <img src="https://via.placeholder.com/300x200?text=Match+3" alt="">
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="4" placeholder="Message..." required></textarea>
+      <input type="submit" value="Send">
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 John Footballer | Built with passion ⚽
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("nav-links").classList.toggle("active");
+    }
+
+    // Section scroll animation
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+
+</body>
+</html>
